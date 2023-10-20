@@ -9,31 +9,21 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
+            User user1 = new User() {FirstName="Alper", LastName="Dogan", Email="abc@gmail.com", Password="123"};
 
-            foreach (var car in carManager.GetCarDetail().Data)
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.AddUser(user1);
+
+            Rental rental1 = new Rental() {CustomerId=1, CarId=1, RentDate = new DateTime(2023,1,1) , ReturnDate = new DateTime(2023, 1, 2) };
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rentalManager.AddRental(rental1);
+
+            foreach(var rental in rentalManager.GetAll().Data)
             {
-                Console.WriteLine(car.BrandName+" "+car.CarName+" "+car.ColorName+" "+car.DailyPrice);
+                Console.WriteLine(rental.Id + " " + rental.CustomerId);
             }
-            //foreach (var car in carManager.GetCarsByBrandId(2))
-            //{
-            //    Console.WriteLine(car.CarName);
-            //}
-
-            //Car car1 = new Car() { BrandId=2, ColorId=3 , DailyPrice=1000 , ModelYear = 2020 , Description = "aaa", CarName = "alper" };
-
-            //carManager.AddCar(car1);
-
-            //foreach (var car in carManager.GetAll())
-            //{
-            //    Console.WriteLine(car.Id + " " + car.CarName + " " + car.DailyPrice + " " + car.Description);
-            //}
-
-            //carManager.DeleteCar(car1);
-            //foreach (var car in carManager.GetAll())
-            //{
-            //    Console.WriteLine(car.CarName);
-            //}
+            
         }
     }
 }
