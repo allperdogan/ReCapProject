@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Utilities.Result
+namespace Core.Utilities.Results
 {
     public class ErrorDataResult<T> : DataResult<T>
     {
@@ -24,6 +24,5 @@ namespace Core.Utilities.Result
         {
 
         }
-
     }
 }
